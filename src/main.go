@@ -1,8 +1,11 @@
 package main
 
 import (
-  "fmt"
-  //"time"
+	"fmt"
+	"helpers/user"
+	"helpers/math"
+	"helpers/communicate"
+	//"time"
 )
 
 /*func f (n int) {
@@ -12,23 +15,23 @@ import (
 }
 
 func pinger(c chan string) {
-  for i := 0; ; i++ {
-    c <- "ping"
-  }
+	for i := 0; ; i++ {
+		c <- "ping"
+	}
 }
 
 func ponger(c chan string) {
-  for i := 0; ; i++ {
-    c <- "pong"
-  }
+	for i := 0; ; i++ {
+		c <- "pong"
+	}
 }
 
 func printer(c chan string) {
-  for {
-    msg := <- c
-    fmt.Println(msg)
-    time.Sleep(time.Second * 1)
-  }
+	for {
+		msg := <- c
+		fmt.Println(msg)
+		time.Sleep(time.Second * 1)
+	}
 }*/
 
 
@@ -39,17 +42,17 @@ func main() {
 	fmt.Println("Please give me your name so I can see if I need to set you up or can load your details.")
 	fmt.Scanlnt(&user)
 
-	// Check if we already have this user
-		user.Exists()
+		// Check if we already have this user
+		userKnown := user.Exists()
 
-		if true {
+		if userKnown {
 			allTransactions := user.LoadAllTransactions()
 		} else {
 			user.Init()
 			allTransactions := user.LoadAllTransactions()
 		}
 
-	// Every X seconds (user can define):
+		// Every X seconds (user can define):
 		var updateFrequency float64
 		fmt.Println("How often would you like me to call to check the current price avarage?")
 		fmt.Scanlnt(&updateFrequency)
@@ -58,26 +61,26 @@ func main() {
 		quit := make(chan struct{})
 
 		go func() {
-		    for {
-		       select {
-		        case <- ticker.C:
-		            // Calc current market avarage value
-		        	var prices slice = commMod()
+				for {
+					 select {
+						case <- ticker.C:
+							// Calc current market avarage value
+							var prices slice = commMod()
 
-		            // Calc profit
-		        	var avarage float32 = mathMod.average(prices)
-		        	var profit float32 = mathMod.profit(allTransactions, avarage)
+							// Calc profit
+							var avarage float32 = mathMod.average(prices)
+							var profit float32 = mathMod.profit(allTransactions, avarage)
 
-		            // Print both
-		            fmt.printLn("Current avarage price for 1 ETH per 1 EUR is: ", avarage)
-		            fmt.printLn("Your profits: ", profit)
-		        case <- quit:
-		            ticker.Stop()
-		            return
-		        }
-		    }
+							// Print both
+							fmt.printLn("Current avarage price for 1 ETH per 1 EUR is: ", avarage)
+							fmt.printLn("Your profits: ", profit)
+						case <- quit:
+								ticker.Stop()
+								return
+						}
+				}
 		 }()
-		
+
 		 var quitInput string
 		 fmt.Scanln(&quitInput)
 
@@ -97,7 +100,7 @@ func main() {
 
 //2
 /*	for i := 0; i < 10; i++ {
-	  go f(i)
+		go f(i)
 	}
 	var input string
 	fmt.Scanln(&input)*/

@@ -3,15 +3,15 @@
 	//Save user
 	//Update user
 
-package main
+package user
 
 import (
-    "io/ioutil"
+		"io/ioutil"
 )
 
 type user struct {
-  Name string
-  Transactions slice?
+	Name string
+	Transactions slice?
 }
 
 type transaction struct {
@@ -30,7 +30,7 @@ func (u *user) Exists () {
 	b, err := ioutil.ReadFile(defaultBasePath + userFileLocation + defaultFileExtension)
 	if err != nil {
 		fmt.printLn("Welcome! I will get you set up.")
-	    //panic(err)
+			//panic(err)
 	} else {
 		fmt.printLn("Welcome back " + user.Name)
 		bool extraTransactions
@@ -52,7 +52,7 @@ func (u *user) Exists () {
 /*	// write the whole body at once
 	err = ioutil.WriteFile("output.txt", b, 0644)
 	if err != nil {
-	    panic(err)
+			panic(err)
 	}*/
 
 
@@ -61,7 +61,7 @@ func (u *user) Exists () {
 		fmt.printLn("Welcome back " + user.Name)
 		return true
 	} else {
-		
+
 		return false
 	}
 }
@@ -76,9 +76,9 @@ func (u *user) LoadTransactions () {
 	// read the whole file at once
 	b, err := ioutil.ReadFile(defaultBasePath + userFileLocation + defaultFileExtension)
 	if err != nil {
-	    panic(err)
+		panic(err)
 	} else {
-
+		u[all]
 	}
 }
 
@@ -112,8 +112,6 @@ func (u *user, transactionDetails) SaveTransactions () {
 		make interface{Date, Exchange, Price, Amount}
 		user.transactions.push()??? := transaction{transactionDetails[]}
 	}
-
-	
 }
 
 func (user *user) Init () {
