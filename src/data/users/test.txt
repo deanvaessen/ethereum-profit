@@ -1,0 +1,1 @@
+{"Date":"01/01/01","Price":999999,"Exchange":"Kraken","Amount":1}
