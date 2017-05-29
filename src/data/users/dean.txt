@@ -1,0 +1,1 @@
+{"Date":"d","Price":90,"Exchange":"d","Amount":1}
